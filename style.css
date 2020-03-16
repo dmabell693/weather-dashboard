@@ -1,0 +1,48 @@
+nav {
+    color: #ffffff;
+}
+
+h6 {
+    padding-top: 0.5rem;
+}
+
+form {
+    margin-bottom: .75rem;
+}
+
+.sidebar-sticky {
+    background-color: #f8f9fa;
+}
+
+#current-city-today {
+    margin: 1rem 0;
+    padding-bottom: 0.5rem;
+}
+
+#current-city {
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+}
+
+#current-city, #temperature, #humidity, #wind-speed, #uv-index, #five-day-container, #five-day-label {
+    padding-left: 0;
+}
+
+/* @media (min-width: 1092px) {
+    input {
+        margin-right: 0 !important;
+    }
+} */
+
+@media (min-width: 861px) {
+    input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 860px) {
+    input {
+        width: 75% !important;
+    }
+}

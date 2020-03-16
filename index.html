@@ -5,17 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/60e880e0ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <nav class="navbar justify-content-center navbar-dark bg-dark">
+        <h1>Weather Dashboard</h1>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3 sidebar-sticky">
+                <h6>Search for a City:</h6>
+                <form class="form-inline">
+                    <input type="text" class="form-control mb-2" id="city-search">
+                    <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
+                </form>
+                <ul class="list-group" id="city-list">
+
+                </ul>
+            </div>
+            
+            <div class="col-8">
+                <div class="container border rounded" id="current-city-today">
+                    <h5 class="container" id="current-city"></h5>
+                    <p class="container" id="temperature"></p>
+                    <p class="container" id="humidity"></p>
+                    <p class="container" id="wind-speed"></p>
+                    <p class="container" id="uv-index"></p>
+                </div>
+                <div class="container" id="five-day-container">
+                    <h5 class="container" id="five-day-label">5-Day Forecast:</h5>
+
+                </div>
+            </div>
+            
+        </div>
 
 
 
 
 
 
+
+
+
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </body>
 </html>
