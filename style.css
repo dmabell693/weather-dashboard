@@ -15,8 +15,14 @@ form {
 }
 
 .five-day-content {
-    /* margin: 1rem; */
-    background-color: aquamarine;
+    color: #ffffff;
+    background-color: #037afb;
+}
+
+.five-day-p {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 14px;
 }
 
 #current-city-today {
@@ -38,10 +44,6 @@ form {
 #uv-index {
     padding: 0.25rem;
     color: #ffffff;
-}
-
-#five-day-label {
-    padding-left: 1rem;
 }
 
 /* @media (min-width: 1092px) {
