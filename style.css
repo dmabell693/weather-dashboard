@@ -14,6 +14,11 @@ form {
     background-color: #f8f9fa;
 }
 
+.five-day-content {
+    /* margin: 1rem; */
+    background-color: aquamarine;
+}
+
 #current-city-today {
     margin: 1rem 0;
     padding-bottom: 0.5rem;
@@ -22,11 +27,21 @@ form {
 #current-city {
     padding-top: 1.25rem;
     padding-bottom: 1rem;
+    padding-left: 1rem;
     margin-bottom: 0;
 }
 
-#current-city, #temperature, #humidity, #wind-speed, #uv-index, #five-day-container, #five-day-label {
+/* #current-city, #temperature, #humidity, #wind-speed, #uv-index-label, #uv-index, #five-day-container, #five-day-label {
     padding-left: 0;
+} */
+
+#uv-index {
+    padding: 0.25rem;
+    color: #ffffff;
+}
+
+#five-day-label {
+    padding-left: 1rem;
 }
 
 /* @media (min-width: 1092px) {

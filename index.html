@@ -26,15 +26,23 @@
             </div>
             
             <div class="col-8">
-                <div class="container border rounded" id="current-city-today">
-                    <h5 class="container" id="current-city"></h5>
+                <div class="row border rounded" id="current-city-today">
+                    <h5 id="current-city"></h5>
+                    <img id="weather-icon">
                     <p class="container" id="temperature"></p>
                     <p class="container" id="humidity"></p>
                     <p class="container" id="wind-speed"></p>
-                    <p class="container" id="uv-index"></p>
+                    <div class="container" id="uv-index-label">
+                        <p>UV Index: <span class="rounded" id="uv-index"></span></p>
+                    </div>
                 </div>
-                <div class="container" id="five-day-container">
-                    <h5 class="container" id="five-day-label">5-Day Forecast:</h5>
+                <h5 id="five-day-label">5-Day Forecast:</h5>
+                <div class="row" id="five-day-container">
+                    <div class="col m-2 rounded five-day-content" id="day-1"></div>
+                    <div class="col m-2 rounded five-day-content" id="day-2"></div>
+                    <div class="col m-2 rounded five-day-content" id="day-3"></div>
+                    <div class="col m-2 rounded five-day-content" id="day-3"></div>
+                    <div class="col m-2 rounded five-day-content" id="day-3"></div>
 
                 </div>
             </div>
