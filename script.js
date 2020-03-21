@@ -28,6 +28,7 @@ $("#search-button").on("click", function() {
     $("#city-list").prepend(newCity);
     localStorage.setItem("savedCity", citySearch);
     // console.log(localStorage);
+    $("#city-search").val("");
     makeAPICall();
 });
 
