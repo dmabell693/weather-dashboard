@@ -4,8 +4,7 @@ var cityLon;
 
 //populate search history with last search when opening the page
 if (localStorage.savedCity !== null) {
-    var lastCity = $("<li>").text(localStorage.savedCity);
-    lastCity.attr("class", "list-group-item");
+    var lastCity = $("<li>").text(localStorage.savedCity).attr({"class": "list-group-item", "id": localStorage.savedCity});
     $("#city-list").append(lastCity);
 }
 
@@ -14,7 +13,7 @@ if (citySearch === undefined) {
     citySearch = localStorage.savedCity;
 }
 
-$("button").on("click", function() {
+$("#search-button").on("click", function() {
     event.preventDefault();
     citySearch = $(this).prev().val();
     if (citySearch === "") {
@@ -25,17 +24,18 @@ $("button").on("click", function() {
         return;
     }
     localStorage.clear();
-    var newCity = $("<li>").text(citySearch);
-    newCity.attr("class", "list-group-item");
-    $("#city-list").append(newCity);
+    var newCity = $("<li>").text(citySearch).attr({"class": "list-group-item", "id": citySearch});
+    $("#city-list").prepend(newCity);
     localStorage.setItem("savedCity", citySearch);
     // console.log(localStorage);
     makeAPICall();
 });
 
-$("li").on("click", function() {
+$("ul").on("click", function() {
     event.preventDefault();
-    console.log(event.target);
+    console.log(event.target.id);
+    citySearch = event.target.id;
+    makeAPICall();
 });
 
 function makeAPICall() {
@@ -98,7 +98,7 @@ function makeForecastAPICall() {
         });
 
     function populateForecastData(response) {
-        console.log(response);
+        // console.log(response);
         //day 1
             $("#day-1-date").html(`${moment().add(1, "d").format("M/D/YYYY")}`);
             $("#day-1-icon").attr("src", "http://openweathermap.org/img/wn/" + response.list[9].weather[0].icon + ".png");
