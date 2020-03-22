@@ -115,7 +115,7 @@ function makeForecastAPICall() {
 
         for (var i = 0; i < dayDate.length; i++) {
             dayDate[i].html(`${moment().add((i + 1), "d").format("M/D/YYYY")}`);
-            dayIcon[i].attr("src", "http://openweathermap.org/img/wn/" + response.list[listNumbers[i]].weather[0].icon + ".png");
+            dayIcon[i].attr("src", "https://openweathermap.org/img/wn/" + response.list[listNumbers[i]].weather[0].icon + ".png");
             dayTemp[i].html(`Temp: ${((response.list[listNumbers[i]].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
             dayHumidity[i].html(`Humidity: ${response.list[listNumbers[i]].main.humidity}%`);
         }
