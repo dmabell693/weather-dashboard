@@ -75,7 +75,6 @@ function makeAPICall() {
             .then(function(response) {
                 $("#uv-index").html(`UV Index: `);
                 $("#uv-index-value").html(`${response.value}`);
-                console.log(response.value);
                 //conditionals to set correlating background with uv index
                 if (response.value >= 11) {
                     $("#uv-index-value").css("background-color", "#ae739f");
@@ -104,15 +103,6 @@ function makeForecastAPICall() {
         .then(function(response) {
             populateForecastData(response);
             console.log(response);
-            console.log(response.list[0].dt_txt);
-            console.log((response.list[3].dt_txt).indexOf("12:00:00"));
-            if ((response.list[3].dt_txt).indexOf("12:00:00") === 11) {
-                console.log('hey dickhead');
-            }
-            if ((response.list[0].dt_txt).indexOf("12:00:00") === 11) {
-                console.log('fart');
-            }
-
         });
 
     function populateForecastData(response) {
