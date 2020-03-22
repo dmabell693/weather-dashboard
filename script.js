@@ -92,7 +92,6 @@ function makeAPICall() {
     makeForecastAPICall();
 }
 
-
 function makeForecastAPICall() {
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=46ef9cf3388c1ee5870a9fa681588d0f";
 //ajax call for extended forecast
@@ -101,40 +100,25 @@ function makeForecastAPICall() {
         method: "GET"
     })
         .then(function(response) {
-            populateForecastData(response);
             console.log(response);
+            populateForecastData(response);
         });
 
     function populateForecastData(response) {
-        //day 1
-            $("#day-1-date").html(`${moment().add(1, "d").format("M/D/YYYY")}`);
-            $("#day-1-icon").attr("src", "http://openweathermap.org/img/wn/" + response.list[3].weather[0].icon + ".png");
-            $("#day-1-temp").html(`Temp: ${((response.list[3].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
-            $("#day-1-humidity").html(`Humidity: ${response.list[3].main.humidity}%`);
+        //variables holding element id's to iterate through for loop
+        var dayDate = [$("#day-1-date"), $("#day-2-date"), $("#day-3-date"), $("#day-4-date"), $("#day-5-date")];
+        var dayIcon = [$("#day-1-icon"), $("#day-2-icon"), $("#day-3-icon"), $("#day-4-icon"), $("#day-5-icon")];
+        var dayTemp = [$("#day-1-temp"), $("#day-2-temp"), $("#day-3-temp"), $("#day-4-temp"), $("#day-5-temp")];
+        var dayHumidity = [$("#day-1-humidity"), $("#day-2-humidity"), $("#day-3-humidity"), $("#day-4-humidity"), $("#day-5-humidity")];
+        //index numbers of targeted response.list array. will not consistently render forecast at 1200
+        var listNumbers = [3, 11, 19, 27, 35];
 
-        //day 2
-            $("#day-2-date").html(`${moment().add(2, "d").format("M/D/YYYY")}`);
-            $("#day-2-icon").attr("src", "http://openweathermap.org/img/wn/" + response.list[11].weather[0].icon + ".png");
-            $("#day-2-temp").html(`Temp: ${((response.list[11].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
-            $("#day-2-humidity").html(`Humidity: ${response.list[11].main.humidity}%`);
-        
-        //day 3
-            $("#day-3-date").html(`${moment().add(3, "d").format("M/D/YYYY")}`);
-            $("#day-3-icon").attr("src", "http://openweathermap.org/img/wn/" + response.list[19].weather[0].icon + ".png");
-            $("#day-3-temp").html(`Temp: ${((response.list[19].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
-            $("#day-3-humidity").html(`Humidity: ${response.list[19].main.humidity}%`);
-
-        //day 4
-            $("#day-4-date").html(`${moment().add(4, "d").format("M/D/YYYY")}`);
-            $("#day-4-icon").attr("src", "http://openweathermap.org/img/wn/" + response.list[27].weather[0].icon + ".png");
-            $("#day-4-temp").html(`Temp: ${((response.list[27].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
-            $("#day-4-humidity").html(`Humidity: ${response.list[27].main.humidity}%`);
-        
-        //day 5
-            $("#day-5-date").html(`${moment().add(5, "d").format("M/D/YYYY")}`);
-            $("#day-5-icon").attr("src", "http://openweathermap.org/img/wn/" + response.list[35].weather[0].icon + ".png");
-            $("#day-5-temp").html(`Temp: ${((response.list[35].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
-            $("#day-5-humidity").html(`Humidity: ${response.list[35].main.humidity}%`);    
+        for (var i = 0; i < dayDate.length; i++) {
+            dayDate[i].html(`${moment().add((i + 1), "d").format("M/D/YYYY")}`);
+            dayIcon[i].attr("src", "http://openweathermap.org/img/wn/" + response.list[listNumbers[i]].weather[0].icon + ".png");
+            dayTemp[i].html(`Temp: ${((response.list[listNumbers[i]].main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
+            dayHumidity[i].html(`Humidity: ${response.list[listNumbers[i]].main.humidity}%`);
+        }
     }
 }
 
