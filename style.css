@@ -41,9 +41,21 @@ form {
     padding-left: 0;
 } */
 
+#weather-icon {
+    margin-top: 5px;
+}
+
 #uv-index {
+    padding-left: 15px;
+    margin-right: 0.25rem;
+}
+
+#uv-index-value {
     padding: 0.25rem;
     color: #ffffff;
+    height: 2rem;
+    position: relative;
+    bottom: 4px;
 }
 
 /* @media (min-width: 1092px) {

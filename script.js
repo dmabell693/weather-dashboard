@@ -74,18 +74,20 @@ function makeAPICall() {
             method: "GET"
         })
             .then(function(response) {
-                $("#uv-index").html(`${response.value}`);
+                $("#uv-index").html(`UV Index: `);
+                $("#uv-index-value").html(`${response.value}`);
+                console.log(response.value);
                 //conditionals to set correlating background with uv index
                 if (response.value >= 11) {
-                    $("#uv-index").css("background-color", "#ae739f");
+                    $("#uv-index-value").css("background-color", "#ae739f");
                 } else if (response.value >= 8) {
-                    $("#uv-index").css("background-color", "#ed4950");
+                    $("#uv-index-value").css("background-color", "#ed4950");
                 } else if (response.value >= 6) {
-                    $("#uv-index").css("background-color", "#f28a3e");
+                    $("#uv-index-value").css("background-color", "#f28a3e");
                 } else if (response.value >= 3) {
-                    $("#uv-index").css("background-color", "#f4d631");
+                    $("#uv-index-value").css("background-color", "#f4d631");
                 } else {
-                    $("#uv-index").css("background-colr", "#78a234");
+                    $("#uv-index-value").css("background-colr", "#78a234");
                 }
             });
     }
