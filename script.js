@@ -3,14 +3,12 @@ var citySearch;
 var cityLat;
 var cityLon;
 
-if (localStorage.savedCity === null) {
-    return;
-}
-
 //when the page is opened, check for city in local storage. if yes, display city in sidebar
 if (localStorage.savedCity !== null) {
     var lastCity = $("<li>").text(localStorage.savedCity).attr({"class": "list-group-item text-truncate", "id": localStorage.savedCity});
     $("#city-list").append(lastCity);
+} else if (localStorage.savedCity === null) {
+    lastCity = "";
 }
 
 //when the page is opened, check to see if citySearch has been defined. if no, set citySearch to city in local storage. set citySearch for ajax call w/o event listener
