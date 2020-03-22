@@ -1,17 +1,19 @@
+//set global variables for city to be searched along w/ lat/long
 var citySearch;
 var cityLat;
 var cityLon;
 
-//populate search history with last search when opening the page
+//when the page is opened, check for city in local storage. if yes, display city in sidebar
 if (localStorage.savedCity !== null) {
     var lastCity = $("<li>").text(localStorage.savedCity).attr({"class": "list-group-item text-truncate", "id": localStorage.savedCity});
     $("#city-list").append(lastCity);
 }
 
-//set citySearch to last searched city to populate data for ajax call when opening the page
+//when the page is opened, check to see if citySearch has been defined. if no, set citySearch to city in local storage. set citySearch for ajax call w/o event listener
 if (citySearch === undefined) {
     citySearch = localStorage.savedCity;
 }
+
 
 $("#search-button").on("click", function(event) {
     event.preventDefault();
@@ -19,28 +21,35 @@ $("#search-button").on("click", function(event) {
     if (citySearch === "") {
         return;
     }
+    //check to see if citySearch has been defined. if yes, make api call w/ existing data. return so the sidebar won't be prepended with redundant info
     if (citySearch === localStorage.savedCity) {
         makeAPICall();
         return;
     }
+    //clear local storage to make room for new city
     localStorage.clear();
+    //set "id" attribute to newCity element for easy access on future event listener
     var newCity = $("<li>").text(citySearch).attr({"class": "list-group-item text-truncate", "id": citySearch});
     $("#city-list").prepend(newCity);
+    //set new citySearch to local storage
     localStorage.setItem("savedCity", citySearch);
+    //clear user input
     $("#city-search").val("");
     makeAPICall();
 });
 
+//target any li in the sidebar
 $("ul").on("click", function(event) {
     event.preventDefault();
+    //grab "id" from newCity on line 32
     citySearch = event.target.id;
-    console.log(event.target.id);
     makeAPICall();
 });
 
+//code to populate current weather forecast
 function makeAPICall() {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=46ef9cf3388c1ee5870a9fa681588d0f";
-
+//current weather ajax call
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -59,13 +68,14 @@ function makeAPICall() {
         $("#temperature").html(`Temperature: ${((response.main.temp - 273.15) * 1.8 + 32).toFixed(0)} &#8457`);
         $("#humidity").html(`Humidity: ${response.main.humidity}%`);
         $("#wind-speed").html(`Wind Speed: ${response.wind.speed} MPH`);
-
+//uv index ajax call
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/uvi?appid=46ef9cf3388c1ee5870a9fa681588d0f&lat=" + cityLat + "&lon=" + cityLon,
             method: "GET"
         })
             .then(function(response) {
                 $("#uv-index").html(`${response.value}`);
+                //conditionals to set correlating background with uv index
                 if (response.value >= 11) {
                     $("#uv-index").css("background-color", "#ae739f");
                 } else if (response.value >= 8) {
@@ -83,10 +93,9 @@ function makeAPICall() {
 }
 
 
-
 function makeForecastAPICall() {
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=46ef9cf3388c1ee5870a9fa681588d0f";
-
+//ajax call for extended forecast
     $.ajax({
         url: queryURL,
         method: "GET"
