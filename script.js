@@ -3,6 +3,10 @@ var citySearch;
 var cityLat;
 var cityLon;
 
+if (localStorage.savedCity === null) {
+    return;
+}
+
 //when the page is opened, check for city in local storage. if yes, display city in sidebar
 if (localStorage.savedCity !== null) {
     var lastCity = $("<li>").text(localStorage.savedCity).attr({"class": "list-group-item text-truncate", "id": localStorage.savedCity});
