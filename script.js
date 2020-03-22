@@ -59,7 +59,7 @@ function makeAPICall() {
         });
 
     function populateData(response) {
-        var iconCode = "http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png";
+        var iconCode = "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png";
         cityLat = response.coord.lat;
         cityLon = response.coord.lon;
         $("#current-city").html(`${citySearch} (${moment().format("M/D/YYYY")})`);
